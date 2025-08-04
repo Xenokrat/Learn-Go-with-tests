@@ -49,3 +49,28 @@ func TestSumAllTails(t *testing.T) {
     })
 
 }
+
+func TestResuce(t *testing.T) {
+    t.Run("multiplication of all elements", func(t *testing.T) {
+        multiply := func(x, y int) int {
+            return x * y
+        }
+
+        AssertEqual(t, Reduce([]int{1, 2, 3}, multiply, 1), 6)
+    })
+
+    t.Run("concatenate strings", func(t *testing.T) {
+        concat := func(x, y string) string {
+            return x + y
+        }
+
+        AssertEqual(t, Reduce([]string{"hello ", "world"}, concat, ""), "hello world")
+    })
+}
+
+func AssertEqual(t *testing.T, got, want any) {
+	t.Helper()
+	if got != want {
+		t.Errorf("got %+v want %+v", got, want)
+	}
+}
